@@ -56,9 +56,11 @@ class TagsControllerTest < Test::Unit::TestCase
       resource.formats = [:html]
     end
     
-    should "render text for a missing object" do
-      get :show, :id => 50000
-      assert @response.body.match(/not found/i), @response.body
+    should "raise record not found for a missing object" do
+      assert_raises(ActiveRecord::RecordNotFound) do
+        get :show, :id => 50000
+      end
+      
     end
   end
 end

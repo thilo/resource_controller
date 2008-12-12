@@ -15,4 +15,11 @@ class ProjectsControllerTest < Test::Unit::TestCase
   should_be_restful do |resource|
     resource.formats = [:html]
   end
+  
+  context "no project found" do
+    should "render no project found message" do
+      get :show, :id => 50000
+      assert_equal @response.body, 'Nothing found'
+    end
+  end
 end

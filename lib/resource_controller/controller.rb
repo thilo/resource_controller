@@ -36,7 +36,7 @@ module ResourceController
           show do
             wants.html
 
-            failure.wants.html { render :text => "Member object not found." }
+            failure.wants.html {raise}
           end
 
           create do
